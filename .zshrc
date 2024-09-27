@@ -5,38 +5,51 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-### First, here are the env vars I've added for dev purposes ###
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+export PNPM_HOME="/Users/brian/Library/pnpm"
+export PATH="$PNPM_HOME:$PATH"
+JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk-22.jdk/Contents/Home"
+PATH="${JAVA_HOME}/bin:${PATH}"
+export PATH
+export M2_HOME="/etc/maven/apache-maven-3.9.6"
+PATH="${M2_HOME}/bin:${PATH}"
+export PATH
 
-### Okay, that's all the dev variables, back to your regular programming ###
-
-# If you come from bash you might have to change your $PATH.
-export PATH=$HOME/bin:/usr/local/bin:$HOME/Library/Python/2.7/bin:$PATH
-export PATH=/usr/local/opt/node@12/bin:$PATH
-
-# Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
-# Set name of the theme to load --- if set to "random", it will
-# load a random theme each time oh-my-zsh is loaded, in which case,
-# to know which specific one was loaded, run: echo $RANDOM_THEME
-# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
-# Which plugins would you like to load?
-# Standard plugins can be found in ~/.oh-my-zsh/plugins/*
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
 plugins=(
   git
-  osx
+  macos
   zsh-autosuggestions
+  zsh-nvm
   zsh-syntax-highlighting
   z
-  git-open
 )
 
 source $ZSH/oh-my-zsh.sh
 
+####
+# Aliases
+####
+
+alias ta='tmux a'
+alias brew='arch -arm64 brew'
+
+# Brew Autocomplete
+if type brew &>/dev/null
+then
+  FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+  autoload -Uz compinit
+  compinit
+fi
+
+# use code and z commands to open a vs code project by fuzzy dir name match
+vs () {
+  code `z -e ${1}`
+}
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
