@@ -35,6 +35,7 @@ source $ZSH/oh-my-zsh.sh
 ####
 
 alias c="claude"
+alias cl="clear"
 alias nd="npm run dev"
 alias nb="npm run build"
 alias ni="npm install"
