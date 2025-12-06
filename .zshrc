@@ -36,6 +36,7 @@ source $ZSH/oh-my-zsh.sh
 
 alias c="claude"
 alias cl="clear"
+alias lear="clear"
 alias nd="npm run dev"
 alias nb="npm run build"
 alias nt="npm run test"
