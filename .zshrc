@@ -38,7 +38,9 @@ alias c="claude"
 alias cl="clear"
 alias nd="npm run dev"
 alias nb="npm run build"
+alias nt="npm run test"
 alias ni="npm install"
+alias t="task"
 alias tl="task list"
 alias brew='arch -arm64 brew'
 
@@ -63,14 +65,14 @@ vs () {
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-
-
 # Herd injected PHP 8.4 configuration.
 export HERD_PHP_84_INI_SCAN_DIR="/Users/brian/Library/Application Support/Herd/config/php/84/"
-
 
 # Herd injected PHP binary.
 export PATH="/Users/brian/Library/Application Support/Herd/bin/":$PATH
 export EDITOR=nvim
 
 . "$HOME/.local/bin/env"
+# tabtab source for packages
+# uninstall by removing these lines
+[[ -f ~/.config/tabtab/__tabtab.zsh ]] && . ~/.config/tabtab/__tabtab.zsh || true
