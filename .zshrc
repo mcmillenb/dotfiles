@@ -9,11 +9,9 @@ export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 export PNPM_HOME="/Users/brian/Library/pnpm"
 export PATH="$PNPM_HOME:$PATH"
 JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk-22.jdk/Contents/Home"
-PATH="${JAVA_HOME}/bin:${PATH}"
-export PATH
+export PATH="${JAVA_HOME}/bin:${PATH}"
 export M2_HOME="/etc/maven/apache-maven-3.9.6"
-PATH="${M2_HOME}/bin:${PATH}"
-export PATH
+export PATH="${M2_HOME}/bin:${PATH}"
 
 export ZSH="$HOME/.oh-my-zsh"
 
