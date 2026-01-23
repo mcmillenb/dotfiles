@@ -1,0 +1,161 @@
+# Ghostty Configuration
+# Location: ~/.config/ghostty/config
+# Reload: cmd+shift+,
+
+# =============================================================================
+# APPEARANCE
+# =============================================================================
+
+# Theme - Ghostty ships with hundreds of built-in themes
+# Run `ghostty +list-themes` to see all options
+# theme = Catppuccin Mocha
+theme = Monokai Pro Spectrum
+
+# Font configuration
+font-family = "JetBrains Mono"
+font-size = 14
+
+# Make fonts slightly bolder (good for readability)
+font-thicken = true
+
+# Adjust cell height for better line spacing
+adjust-cell-height = 2
+
+# Disable ligatures if you prefer (personal preference for coding)
+# font-feature = -liga
+
+# Window appearance
+window-padding-x = 8
+window-padding-y = 8
+
+# macOS-specific: hide the title bar for cleaner look
+macos-titlebar-style = tabs
+
+# Cursor
+cursor-style = block
+cursor-style-blink = false
+
+# =============================================================================
+# TMUX INTEGRATION
+# =============================================================================
+
+# Since you're using tmux, you probably don't need Ghostty's built-in splits
+# But if you want quick access to tmux commands via Ghostty keybinds:
+
+# Send tmux prefix (ctrl+a) then specific commands
+# Example: cmd+t to create new tmux window
+keybind = cmd+t=text:\x01c
+
+# cmd+d to split tmux pane vertically
+keybind = cmd+d=text:\x01%
+
+# cmd+shift+d to split tmux pane horizontally  
+keybind = cmd+shift+d=text:\x01\"
+
+# Navigate tmux panes with cmd+arrow keys
+keybind = cmd+left=text:\x01\x1b[D
+keybind = cmd+right=text:\x01\x1b[C
+keybind = cmd+up=text:\x01\x1b[A
+keybind = cmd+down=text:\x01\x1b[B
+
+# cmd+w to close tmux pane
+keybind = cmd+w=text:\x01x
+
+# =============================================================================
+# SHELL INTEGRATION
+# =============================================================================
+
+# Ghostty's shell integration is fantastic - it adds features like:
+# - Jump to previous/next prompt with keybinds
+# - Semantic prompt understanding
+shell-integration = detect
+shell-integration-features = cursor,sudo,title
+
+# Jump to previous/next command prompt
+keybind = cmd+shift+up=jump_to_prompt:-1
+keybind = cmd+shift+down=jump_to_prompt:1
+
+# =============================================================================
+# CLIPBOARD & SELECTION
+# =============================================================================
+
+# Copy/paste (standard macOS)
+keybind = cmd+c=copy_to_clipboard
+keybind = cmd+v=paste_from_clipboard
+
+# Quick select all
+keybind = cmd+a=select_all
+
+# Clipboard settings
+clipboard-read = allow
+clipboard-write = allow
+
+# =============================================================================
+# TABS & WINDOWS (if not using tmux for these)
+# =============================================================================
+
+# If you want Ghostty native tabs as backup:
+# keybind = cmd+t=new_tab
+# keybind = cmd+w=close_surface
+# keybind = cmd+1=goto_tab:1
+# keybind = cmd+2=goto_tab:2
+# ... etc
+
+# =============================================================================
+# PERFORMANCE
+# =============================================================================
+
+# Scrollback buffer (1 million lines should be plenty)
+scrollback-limit = 1000000
+
+# =============================================================================
+# BEHAVIOR
+# =============================================================================
+
+# Confirm before closing with multiple tabs (if using Ghostty tabs)
+confirm-close-surface = false
+
+# Window behavior
+window-save-state = default
+quit-after-last-window-closed = false
+
+# Mouse
+mouse-hide-while-typing = true
+
+# =============================================================================
+# OPTIONAL: DIFFERENT THEMES FOR LIGHT/DARK MODE
+# =============================================================================
+
+# Uncomment these if you want automatic theme switching:
+# theme = light:Catppuccin Latte
+# theme = dark:Catppuccin Mocha
+
+# =============================================================================
+# OPTIONAL: ADDITIONAL CONFIG FILES
+# =============================================================================
+
+# You can split your config into multiple files:
+# config-file = themes.conf
+# config-file = keybinds.conf
+# config-file = ?local.conf  # ? means optional - won't error if missing
+
+# =============================================================================
+# DEVELOPMENT WORKFLOW OPTIMIZATIONS
+# =============================================================================
+
+# Quick terminal for dropdown/scratchpad style (optional)
+# Uncomment if you want a quake-style terminal:
+# quick-terminal-position = top
+# quick-terminal-screen = main
+# keybind = cmd+`=toggle_quick_terminal
+
+# =============================================================================
+# NOTES
+# =============================================================================
+
+# The \x01 in tmux keybinds is ASCII for ctrl+a (your tmux prefix)
+# If you change your tmux prefix back, update these accordingly
+#
+# To see all available actions: `ghostty +list-actions`
+# To see all keybinds: `ghostty +list-keybinds`
+# To validate config: `ghostty +validate-config`
