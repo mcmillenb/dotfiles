@@ -5,6 +5,15 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+# Auto-attach to tmux on SSH login
+if [[ -n "$SSH_CONNECTION" && -z "$TMUX" ]]; then
+  if tmux list-sessions &>/dev/null 2>&1; then
+    tmux attach
+  else
+    tmux new-session
+  fi
+fi
+
 export EDITOR=nvim
 export ZSH="$HOME/.oh-my-zsh"
 
