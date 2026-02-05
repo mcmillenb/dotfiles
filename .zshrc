@@ -1,17 +1,17 @@
+# Auto-attach to tmux on SSH login (must be above p10k instant prompt)
+if [[ -n "$SSH_CONNECTION" && -z "$TMUX" && -t 0 ]]; then
+  if tmux list-sessions &>/dev/null; then
+    exec tmux attach
+  else
+    exec tmux new-session
+  fi
+fi
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
-# Auto-attach to tmux on SSH login
-if [[ -n "$SSH_CONNECTION" && -z "$TMUX" && -t 0 ]]; then
-  if tmux list-sessions &>/dev/null 2>&1; then
-    tmux attach
-  else
-    tmux new-session
-  fi
 fi
 
 export EDITOR=nvim
