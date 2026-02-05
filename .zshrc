@@ -6,7 +6,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 # Auto-attach to tmux on SSH login
-if [[ -n "$SSH_CONNECTION" && -z "$TMUX" ]]; then
+if [[ -n "$SSH_CONNECTION" && -z "$TMUX" && -t 0 ]]; then
   if tmux list-sessions &>/dev/null 2>&1; then
     tmux attach
   else
