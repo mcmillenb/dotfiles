@@ -12,8 +12,8 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 [[ ! -f ~/.zshrc.local ]] || source ~/.zshrc.local
+[[ ! -f ~/.local/bin/env ]] || source ~/.local/bin/env
 [[ ! -f ~/.config/tabtab/__tabtab.zsh ]] || source ~/.config/tabtab/__tabtab.zsh
-source "$HOME/.local/bin/env"
 
 plugins=(
   git
