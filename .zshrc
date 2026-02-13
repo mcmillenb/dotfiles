@@ -14,10 +14,25 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+# Set up Homebrew environment variables
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
 export EDITOR=nvim
 export ZSH="$HOME/.oh-my-zsh"
 
 ZSH_THEME="powerlevel10k/powerlevel10k"
+
+# Enable menu selection for completions
+zstyle ':completion:*' menu select
+
+# Brew Autocomplete
+alias brew='arch -arm64 brew'
+if type brew &>/dev/null
+then
+  FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+  autoload -Uz compinit
+  compinit
+fi
 
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 [[ ! -f ~/.zshrc.local ]] || source ~/.zshrc.local
@@ -35,29 +50,44 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 
-alias c="claude"
+# Disable Ctrl+D to prevent accidental exit
+setopt IGNORE_EOF
+
 alias cl="clear"
+alias claer="clear"
 alias lear="clear"
-alias nd="npm run dev"
-alias nb="npm run build"
-alias nt="npm run test"
+alias laer="clear"
+alias c="claude --tools Read,Write,Edit,Bash,Grep,Glob,AskUserQuestion,TodoWrite,Task"
+alias cluade="claude"
+alias cladue="claude"
+alias ci="composer install"
+alias cb="composer build"
+alias cda="composer dump-autoload"
+alias ct="composer test"
+alias pa="php artisan"
+alias doc="docker compose"
+alias doe="docker exec"
+alias dom="docker model"
+alias dddud="doc down && doc up -d"
+alias dddbncdud="doc down && doc build --no-cache && doc up -d"
 alias ni="npm install"
+alias nb="npm run build"
+alias nd="npm run dev"
+alias ns="npm run serve"
+alias nt="npm test"
+alias nsb="npm run storybook"
 alias t="task"
 alias tl="task list"
-alias brew='arch -arm64 brew'
+alias tc="task create"
+alias td="task delete"
+alias ts="task sync"
+alias gaf="git add \$(git diff --name-only | fzf)"
+alias guf="git reset \$(git diff --cached --name-only | fzf)"
+alias grf="git restore \$(git status --porcelain | cut -c4- | fzf)"
 
-# Brew Autocomplete
-if type brew &>/dev/null
-then
-  FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
-  autoload -Uz compinit
-  compinit
-fi
-
-# use n as a way to launch nvim in the current directory if none is specified
-n () {
-  nvim "${1:-.}"
-}
+# Use n as a way to launch nvim in the current directory if none is specified
+alias n="nvim"
+compdef '_files -g "*.*(-.)"' n
 
 # use code and z commands to open a vs code project by fuzzy dir name match
 vs () {
