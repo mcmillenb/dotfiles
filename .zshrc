@@ -84,6 +84,7 @@ alias ts="task sync"
 alias gaf="git add \$(git diff --name-only | fzf)"
 alias guf="git reset \$(git diff --cached --name-only | fzf)"
 alias grf="git restore \$(git status --porcelain | cut -c4- | fzf)"
+alias mosh='mosh --server=/opt/homebrew/bin/mosh-server'
 
 # Use n as a way to launch nvim in the current directory if none is specified
 alias n="nvim"
