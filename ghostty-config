@@ -2,6 +2,8 @@
 # Location: ~/.config/ghostty/config
 # Reload: cmd+shift+,
 
+command = /opt/homebrew/bin/tmux new-session -A -s main
+
 # =============================================================================
 # APPEARANCE
 # =============================================================================
